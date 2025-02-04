@@ -1,13 +1,13 @@
 import globals from "globals";
 import pluginJs from "@eslint/js";
 import tseslint from "@typescript-eslint/eslint-plugin";
-import tsParser from "@typescript-eslint/parser"; // Подключаем парсер TypeScript
+import tsParser from "@typescript-eslint/parser";
 import pluginReact from "eslint-plugin-react";
+import pluginImport from "eslint-plugin-import";
+import pluginSimpleImportSort from "eslint-plugin-simple-import-sort";
 
-/** @type {import('eslint').Linter.FlatConfig[]} */
 export default [
   {
-    // Настраиваем файлы для проверки
     files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
     languageOptions: {
       parser: tsParser,
@@ -30,7 +30,6 @@ export default [
     },
   },
 
-  // Настройки для React
   {
     ...pluginReact.configs.flat.recommended,
     settings: {
@@ -40,16 +39,33 @@ export default [
     },
     rules: {
       ...pluginReact.configs.flat.recommended.rules,
-      "react/react-in-jsx-scope": "off", // Не требовать React в scope (актуально с новым JSX Runtime)
+      "react/react-in-jsx-scope": "off",
       "react/prop-types": "off",
     },
   },
 
   {
+    plugins: {
+      import: pluginImport,
+      "simple-import-sort": pluginSimpleImportSort,
+    },
     rules: {
-      semi: ["error", "always"], // Обязательная точка с запятой
-      "no-unused-vars": ["warn", { argsIgnorePattern: "^_" }], // Игнорировать переменные с префиксом "_"
-      "no-console": "warn", // Предупреждение при использовании console
+      semi: ["error", "always"],
+      "no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+      "no-console": "warn",
+      "import/order": [
+        "warn",
+        {
+          groups: [
+            ["builtin", "external", "internal"],
+            ["parent", "sibling", "index"],
+          ],
+          "newlines-between": "always",
+          alphabetize: { order: "asc", caseInsensitive: true },
+        },
+      ],
+      "simple-import-sort/imports": "warn",
+      "simple-import-sort/exports": "warn",
     },
   },
 ];
