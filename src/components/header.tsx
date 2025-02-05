@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useTheme } from "@/context/theme-provider.tsx";
 import { Moon, Sun } from "lucide-react";
+
+import { useTheme } from "@/context/theme-provider.tsx";
 import SearchInput from "@/components/search-input";
 
 const Header: React.FC = () => {

@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import { Clock, Loader2, Search, XCircle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { format } from "date-fns";
+
 import {
   CommandDialog,
   CommandEmpty,
@@ -8,13 +12,10 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/components/ui/command.tsx";
-
 import { Button } from "@/components/ui/button.tsx";
-import { Clock, Loader2, Search, XCircle } from "lucide-react";
 import { useLocationSearch } from "@/hooks/use-weather.ts";
-import { useNavigate } from "react-router-dom";
 import { useSearchHistory } from "@/hooks/use-search-history.ts";
-import { format } from "date-fns";
+
 
 const CitySearch: React.FC = () => {
   const [open, setOpen] = useState(false);

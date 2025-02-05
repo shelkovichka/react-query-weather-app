@@ -1,5 +1,6 @@
-import { Coordinates } from "@/api/types";
 import { useQuery } from "@tanstack/react-query";
+
+import { Coordinates } from "@/api/types";
 import { weatherAPI } from "@/api/weather";
 
 export const WEATHER_KEYS = {

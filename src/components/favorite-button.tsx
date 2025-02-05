@@ -1,9 +1,11 @@
 import React from "react";
-import { WeatherData } from "@/api/types";
-import { useFavorites } from "@/hooks/use-favorites";
-import { Button } from "./ui/button";
 import { Star } from "lucide-react";
 import { toast } from "sonner";
+
+import { WeatherData } from "@/api/types";
+import { useFavorites } from "@/hooks/use-favorites";
+
+import { Button } from "./ui/button";
 
 interface FavoriteButtonProps {
   data: WeatherData;

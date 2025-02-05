@@ -1,6 +1,4 @@
 import React from "react";
-import { GeocodingResponse, type WeatherData } from "@/api/types";
-import { Card, CardContent } from "@/components/ui/card";
 import {
   ArrowDown,
   ArrowUp,
@@ -10,6 +8,9 @@ import {
   Sunset,
 } from "lucide-react";
 import { format } from "date-fns";
+
+import { GeocodingResponse, type WeatherData } from "@/api/types";
+import { Card, CardContent } from "@/components/ui/card";
 import WeatherAnimation from "@/components/weather-animation";
 
 interface CurrentWeatherProps {

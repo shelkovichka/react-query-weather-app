@@ -1,11 +1,4 @@
 import React from "react";
-import { ForecastData } from "@/api/types.ts";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card.tsx";
 import {
   Line,
   LineChart,
@@ -15,6 +8,14 @@ import {
   YAxis,
 } from "recharts";
 import { format } from "date-fns";
+
+import { ForecastData } from "@/api/types.ts";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card.tsx";
 
 interface TempInHoursProps {
   data: ForecastData;
@@ -30,7 +31,7 @@ const TempInHours: React.FC<TempInHoursProps> = ({ data }) => {
   return (
     <Card className="flex-1">
       <CardHeader>
-        <CardTitle>Today's Temperature</CardTitle>
+        <CardTitle>{"Today's Temperature"}</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="w- h-[200px]">

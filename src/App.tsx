@@ -1,12 +1,15 @@
-import "./App.css";
+import React from "react";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "sonner";
+
 import Layout from "@/components/layout.tsx";
 import { ThemeProvider } from "@/context/theme-provider.tsx";
-import Home from "@/pages/home";
 import City from "@/pages/city.tsx";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { Toaster } from "sonner";
+import Home from "@/pages/home";
+
+import "./App.css";
 
 const queryClient = new QueryClient({
   defaultOptions: {

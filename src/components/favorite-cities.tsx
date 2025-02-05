@@ -1,10 +1,12 @@
-import { useFavorites } from "@/hooks/use-favorites";
-import { ScrollArea, ScrollBar } from "./ui/scroll-area";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useWeatherQuery } from "@/hooks/use-weather";
-import { Button } from "./ui/button";
 import { X, Loader2 } from "lucide-react";
 import { toast } from "sonner";
+
+import { useFavorites } from "@/hooks/use-favorites";
+import { useWeatherQuery } from "@/hooks/use-weather";
+
+import { Button } from "./ui/button";
 import WeatherAnimation from "./weather-animation";
 
 interface FavoriteCityProps {

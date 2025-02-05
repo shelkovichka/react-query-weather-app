@@ -1,12 +1,11 @@
 import React from "react";
-import { WeatherData } from "@/api/types.ts";
-import { Compass, Gauge, Sunrise, Sunset } from "lucide-react";
+import { Sunrise, Sunset } from "lucide-react";
 import { format } from "date-fns";
+
+import { WeatherData } from "@/api/types.ts";
 import {
   Card,
   CardContent,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card.tsx";
 
 interface DetailsProps {

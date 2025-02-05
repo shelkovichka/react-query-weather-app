@@ -1,16 +1,19 @@
 import React from "react";
-import Lottie from "lottie-react";
-import clearSkyAnimation from "@/animations/clear-sky.json";
-import fewCloudsAnimation from "@/animations/few-clouds.json";
-import scatteredCloudsAnimation from "@/animations/scattered-clouds.json";
-import brokenCloudsAnimation from "@/animations/scattered-clouds.json";
-import showerRainAnimation from "@/animations/rain.json";
-import rainAnimation from "@/animations/rain.json";
-import thunderstormAnimation from "@/animations/thunderstorm.json";
-import snowAnimation from "@/animations/snow.json";
-import mistAnimation from "@/animations/mist.json";
+import Lottie, { LottieComponentProps } from "lottie-react";
 
-const weatherAnimations: { [key: string]: any } = {
+import clearSkyAnimation from "@/assets/clear-sky.json";
+import fewCloudsAnimation from "@/assets/few-clouds.json";
+import scatteredCloudsAnimation from "@/assets/scattered-clouds.json";
+import brokenCloudsAnimation from "@/assets/scattered-clouds.json";
+import showerRainAnimation from "@/assets/rain.json";
+import rainAnimation from "@/assets/rain.json";
+import thunderstormAnimation from "@/assets/thunderstorm.json";
+import snowAnimation from "@/assets/snow.json";
+import mistAnimation from "@/assets/mist.json";
+
+const weatherAnimations: {
+  [key: string]: LottieComponentProps["animationData"];
+} = {
   "01": clearSkyAnimation,
   "02": fewCloudsAnimation,
   "03": scatteredCloudsAnimation,

@@ -1,8 +1,9 @@
 import React from "react";
-import { ForecastData } from "@/api/types";
 import { format } from "date-fns";
-import { Card, CardContent } from "@/components/ui/card.tsx";
 import { ArrowDown, Droplets, Wind } from "lucide-react";
+
+import { ForecastData } from "@/api/types";
+import { Card, CardContent } from "@/components/ui/card.tsx";
 import WeatherAnimation from "@/components/weather-animation";
 
 interface ForecastProps {
