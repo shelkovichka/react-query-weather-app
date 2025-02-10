@@ -16,7 +16,6 @@ import { Button } from "@/components/ui/button.tsx";
 import { useLocationSearch } from "@/hooks/use-weather.ts";
 import { useSearchHistory } from "@/hooks/use-search-history.ts";
 
-
 const CitySearch: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");

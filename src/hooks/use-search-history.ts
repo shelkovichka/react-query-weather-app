@@ -35,7 +35,6 @@ export function useSearchHistory() {
         searchedAt: Date.now(),
       };
 
-      // Remove duplicates and keep only last 10 searches
       const filteredHistory = history.filter(
         (item) => !(item.lat === search.lat && item.lon === search.lon)
       );

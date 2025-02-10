@@ -3,10 +3,7 @@ import { Sunrise, Sunset } from "lucide-react";
 import { format } from "date-fns";
 
 import { WeatherData } from "@/api/types.ts";
-import {
-  Card,
-  CardContent,
-} from "@/components/ui/card.tsx";
+import { Card, CardContent } from "@/components/ui/card.tsx";
 
 interface DetailsProps {
   data: WeatherData;
