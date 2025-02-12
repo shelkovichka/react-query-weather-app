@@ -14,6 +14,12 @@ export default [
     plugins: {
       import: importPlugin,
       "unused-imports": unusedImports,
+      react: pluginReact,
+    },
+    settings: {
+      react: {
+        version: "detect",
+      },
     },
     rules: {
       "import/order": [
