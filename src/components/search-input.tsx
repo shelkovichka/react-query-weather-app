@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Clock, Loader2, Search, XCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
@@ -15,9 +15,17 @@ import {
 import { Button } from "@/components/ui/button.tsx";
 import { useLocationSearch } from "@/hooks/use-weather.ts";
 import { useSearchHistory } from "@/hooks/use-search-history.ts";
+import { useDebounce } from "@/hooks/use-debounce.ts";
 
 const CitySearch: React.FC = () => {
   const [open, setOpen] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+  const debouncedValue = useDebounce(inputValue, 300);
+
+  useEffect(() => {
+    setQuery(debouncedValue);
+  }, [debouncedValue]);
+
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
 
@@ -53,12 +61,18 @@ const CitySearch: React.FC = () => {
       <CommandDialog open={open} onOpenChange={setOpen}>
         <CommandInput
           placeholder="Search cities..."
-          value={query}
-          onValueChange={setQuery}
+          value={inputValue}
+          onValueChange={setInputValue}
         />
         <CommandList>
-          {query.length > 2 && !isLoading && (
+          {query.length >= 3 && !isLoading && locations?.length === 0 && (
             <CommandEmpty>No Cities found.</CommandEmpty>
+          )}
+
+          {query.length >= 3 && isLoading && (
+            <div className="flex items-center justify-center p-4">
+              <Loader2 className="h-4 w-4 animate-spin" />
+            </div>
           )}
 
           {history.length > 0 && (

@@ -50,7 +50,7 @@ const Forecast: React.FC<ForecastProps> = ({ data }) => {
   const formatTemp = (temp: number) => `${Math.round(temp)}°`;
 
   return (
-    <div className="xl:flex gap-4 overflow-x-scroll w-full">
+    <div className="xl:flex gap-4 overflow-x-hidden w-full">
       {nextDays.map((day) => {
         return (
           <Card key={day.date} className="pt-6 min-w-40 align-center">
