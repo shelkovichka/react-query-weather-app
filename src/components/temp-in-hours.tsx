@@ -56,10 +56,16 @@ const TempInHours: React.FC<TempInHoursProps> = ({ data }) => {
                 content={({ active, payload }) => {
                   if (active && payload && payload.length) {
                     return (
-                      <div className="rounded-lg border bg-background p-2 shadow-sm">
+                      <div
+                        className="rounded-lg border bg-background p-2
+                          shadow-sm"
+                      >
                         <div className="grid grid-cols-2 gap-2">
                           <div className="flex flex-col">
-                            <span className="text-[0.70rem] uppercase text-muted-foreground">
+                            <span
+                              className="text-[0.70rem] uppercase
+                                text-muted-foreground"
+                            >
                               Temperature{" "}
                             </span>
                             <span className="font-bold">
@@ -67,7 +73,10 @@ const TempInHours: React.FC<TempInHoursProps> = ({ data }) => {
                             </span>
                           </div>
                           <div className="flex flex-col">
-                            <span className="text-[0.70rem] uppercase text-muted-foreground">
+                            <span
+                              className="text-[0.70rem] uppercase
+                                text-muted-foreground"
+                            >
                               Feels like{" "}
                             </span>
                             <span className="font-bold">

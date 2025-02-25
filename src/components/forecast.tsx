@@ -54,12 +54,18 @@ const Forecast: React.FC<ForecastProps> = ({ data }) => {
       {nextDays.map((day) => {
         return (
           <Card key={day.date} className="pt-6 min-w-40 align-center">
-            <CardContent className="grid grid-cols-3 sm:grid-cols-4 xl:grid-cols-none xl:flex-col items-center gap-2">
+            <CardContent
+              className="grid grid-cols-3 sm:grid-cols-4 xl:grid-cols-none
+                xl:flex-col items-center gap-2"
+            >
               <div>
                 <p className="font-medium">
                   {format(new Date(day.date * 1000), "EEE, MMM d")}
                 </p>
-                <p className="text-sm text-muted-foreground capitalize sm:whitespace-nowrap">
+                <p
+                  className="text-sm text-muted-foreground capitalize
+                    sm:whitespace-nowrap"
+                >
                   {day.weather.description}
                 </p>
               </div>

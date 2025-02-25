@@ -14,8 +14,8 @@ interface SearchHistoryItem {
 
 export function useSearchHistory() {
   const [history, setHistory] = useLocalStorage<SearchHistoryItem[]>(
-    "search-history",
-    []
+      "search-history",
+      [],
   );
   const queryClient = useQueryClient();
 
@@ -27,7 +27,7 @@ export function useSearchHistory() {
 
   const addToHistory = useMutation({
     mutationFn: async (
-      search: Omit<SearchHistoryItem, "id" | "searchedAt">
+        search: Omit<SearchHistoryItem, "id" | "searchedAt">,
     ) => {
       const newSearch: SearchHistoryItem = {
         ...search,
@@ -36,7 +36,7 @@ export function useSearchHistory() {
       };
 
       const filteredHistory = history.filter(
-        (item) => !(item.lat === search.lat && item.lon === search.lon)
+          (item) => !(item.lat === search.lat && item.lon === search.lon),
       );
       const newHistory = [newSearch, ...filteredHistory].slice(0, 10);
 

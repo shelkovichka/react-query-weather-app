@@ -23,7 +23,9 @@ function FavoriteCity({ id, name, lat, lon, onRemove }: FavoriteCityProps) {
 
   return (
     <div
-      className="relative flex items-center min-w-[250px] cursor-pointer gap-3 rounded-lg border bg-card p-4 pr-8 shadow-sm transition-all hover:shadow-md"
+      className="relative flex items-center min-w-[250px] cursor-pointer
+        gap-3 rounded-lg border bg-card p-4 pr-8 shadow-sm
+        transition-all hover:shadow-md"
       role="button"
       tabIndex={0}
       onClick={() => navigate(`/city/${name}?lat=${lat}&lon=${lon}`)}
@@ -31,7 +33,8 @@ function FavoriteCity({ id, name, lat, lon, onRemove }: FavoriteCityProps) {
       <Button
         variant="ghost"
         size="icon"
-        className="absolute right-1 top-1 h-6 w-6 rounded-full p-0 hover:text-destructive-foreground group-hover:opacity-100"
+        className="absolute right-1 top-1 h-6 w-6 rounded-full p-0
+          hover:text-destructive-foreground group-hover:opacity-100"
         onClick={(e) => {
           e.stopPropagation();
           onRemove(id);

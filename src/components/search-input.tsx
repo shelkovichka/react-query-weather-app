@@ -51,7 +51,8 @@ const CitySearch: React.FC = () => {
     <div>
       <Button
         variant="outline"
-        className="relative w-full justify-start text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64"
+        className="relative w-full justify-start text-sm text-muted-foreground
+          sm:pr-12 md:w-40 lg:w-64"
         onClick={() => setOpen(true)}
       >
         <Search className="mr-2 h-4 w-4" />
@@ -94,7 +95,8 @@ const CitySearch: React.FC = () => {
                 {history.map((item) => (
                   <CommandItem
                     key={item.id}
-                    value={`${item.lat}|${item.lon}|${item.name}|${item.country}`}
+                    value={`${item.lat}|${item.lon}|
+                      ${item.name}|${item.country}`}
                     onSelect={handleSelect}
                   >
                     <Clock className="mr-2 h-4 w-4 text-muted-foreground" />
@@ -123,7 +125,8 @@ const CitySearch: React.FC = () => {
                 return (
                   <CommandItem
                     key={`${location.lat}-${location.lon}`}
-                    value={`${location.lat}|${location.lon}|${location.name}|${location.country}`}
+                    value={`${location.lat}|${location.lon}|
+                      ${location.name}|${location.country}`}
                     onSelect={handleSelect}
                   >
                     <Search className="mr-2 h-4 w-4" />

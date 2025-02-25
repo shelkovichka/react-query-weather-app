@@ -24,7 +24,13 @@ const CurrentWeather: React.FC<CurrentWeatherProps> = ({
 }) => {
   const {
     weather: [currentWeather],
-    main: { temp, feels_like, temp_max, temp_min, humidity },
+    main: {
+      temp,
+      feels_like: feelsLike,
+      temp_max: tempMax,
+      temp_min: tempMin,
+      humidity,
+    },
     wind: { speed },
     sys: { sunrise, sunset },
   } = data;
@@ -56,16 +62,16 @@ const CurrentWeather: React.FC<CurrentWeatherProps> = ({
 
                 <div className="space-y-1">
                   <p className="text-sm font-medium text-muted-foreground">
-                    Feels like {formatTemp(feels_like)}
+                    Feels like {formatTemp(feelsLike)}
                   </p>
                   <div className="flex gap-2 text-sm font-medium">
                     <span className="flex items-center gap-1 text-blue-500">
                       <ArrowDown className="h-3 w-3" />
-                      {formatTemp(temp_min)}
+                      {formatTemp(tempMin)}
                     </span>
                     <span className="flex items-center gap-1 text-red-500">
                       <ArrowUp className="h-3 w-3" />
-                      {formatTemp(temp_max)}
+                      {formatTemp(tempMax)}
                     </span>
                   </div>
                 </div>
@@ -112,7 +118,10 @@ const CurrentWeather: React.FC<CurrentWeatherProps> = ({
           </div>
 
           <div className="flex flex-col items-center justify-center">
-            <div className="relative flex aspect-square w-full max-w-[200px] items-center justify-center">
+            <div
+              className="relative flex aspect-square w-full
+                max-w-[200px] items-center justify-center"
+            >
               <WeatherAnimation
                 iconCode={currentWeather.icon}
                 className="h-[80%] w-[80%]"

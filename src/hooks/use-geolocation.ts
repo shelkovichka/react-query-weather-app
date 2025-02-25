@@ -28,45 +28,45 @@ export function useGeolocation() {
     }
 
     navigator.geolocation.getCurrentPosition(
-      (position) => {
-        setLocationData({
-          coordinates: {
-            lat: position.coords.latitude,
-            lon: position.coords.longitude,
-          },
-          error: null,
-          isLoading: false,
-        });
-      },
-      (error) => {
-        let errorMessage: string;
+        (position) => {
+          setLocationData({
+            coordinates: {
+              lat: position.coords.latitude,
+              lon: position.coords.longitude,
+            },
+            error: null,
+            isLoading: false,
+          });
+        },
+        (error) => {
+          let errorMessage: string;
 
-        switch (error.code) {
-          case error.PERMISSION_DENIED:
-            errorMessage =
+          switch (error.code) {
+            case error.PERMISSION_DENIED:
+              errorMessage =
               "Location permission denied. Please enable location access.";
-            break;
-          case error.POSITION_UNAVAILABLE:
-            errorMessage = "Location information is unavailable.";
-            break;
-          case error.TIMEOUT:
-            errorMessage = "Location request timed out.";
-            break;
-          default:
-            errorMessage = "An unknown error occurred.";
-        }
+              break;
+            case error.POSITION_UNAVAILABLE:
+              errorMessage = "Location information is unavailable.";
+              break;
+            case error.TIMEOUT:
+              errorMessage = "Location request timed out.";
+              break;
+            default:
+              errorMessage = "An unknown error occurred.";
+          }
 
-        setLocationData({
-          coordinates: null,
-          error: errorMessage,
-          isLoading: false,
-        });
-      },
-      {
-        enableHighAccuracy: true,
-        timeout: 10000,
-        maximumAge: 0,
-      }
+          setLocationData({
+            coordinates: null,
+            error: errorMessage,
+            isLoading: false,
+          });
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 10000,
+          maximumAge: 0,
+        },
     );
   };
 

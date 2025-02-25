@@ -6,7 +6,10 @@ import {
   WeatherData,
 } from "@/api/types.ts";
 
-const createURL = (endpoint: string, params: Record<string, string | number>) => {
+const createURL = (
+    endpoint: string,
+    params: Record<string, string | number>,
+) => {
   const searchParams = new URLSearchParams({
     appid: API_CONFIG.API_KEY,
     ...params,
@@ -25,7 +28,10 @@ const fetchData = async <T>(url: string): Promise<T> => {
 };
 
 export const weatherAPI = {
-  getCurrentWeather: async ({ lat, lon }: Coordinates): Promise<WeatherData> => {
+  getCurrentWeather: async ({
+    lat,
+    lon,
+  }: Coordinates): Promise<WeatherData> => {
     const url = createURL(`${API_CONFIG.BASE_URL}/weather`, {
       lat: lat.toString(),
       lon: lon.toString(),
@@ -45,7 +51,10 @@ export const weatherAPI = {
     return fetchData<ForecastData>(url);
   },
 
-  reverseGeocode: async ({ lat, lon }: Coordinates): Promise<GeocodingResponse[]> => {
+  reverseGeocode: async ({
+    lat,
+    lon,
+  }: Coordinates): Promise<GeocodingResponse[]> => {
     const url = createURL(`${API_CONFIG.GEO}/reverse`, {
       lat: lat.toString(),
       lon: lon.toString(),
