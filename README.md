@@ -2,6 +2,8 @@
 
 ![App Screenshot](./public/screenshot.png)
 
+[Live Demo](https://weazery.netlify.app/)
+
 ## Tech Stack
 
 - **React**: A JavaScript library for building user interfaces.
@@ -15,22 +17,24 @@
 ## Installation
 
 1. Clone the repository:
-    ```sh
-    git clone https://github.com/your-username/react-query-weather-app.git
-    cd react-query-weather-app
-    ```
+
+   ```sh
+   git clone https://github.com/your-username/react-query-weather-app.git
+   cd react-query-weather-app
+   ```
 
 2. Install dependencies:
-    ```sh
-    npm install
-    ```
+   ```sh
+   npm install
+   ```
 
 ## Running the App
 
 1. Start the development server:
-    ```sh
-    npm run dev
-    ```
+
+   ```sh
+   npm run dev
+   ```
 
 2. Open your browser and navigate to `http://localhost:3000`.
 
