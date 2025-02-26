@@ -153,6 +153,7 @@ export default [
   },
   {
     ignores: [
+      "**/dist/**",
       "**.config.js",
       "**.config.ts",
       "utils.ts",
