@@ -1,20 +1,20 @@
-import React from "react";
-import { AlertTriangle, MapPin, RefreshCw } from "lucide-react";
+import React from 'react';
+import {AlertTriangle, MapPin, RefreshCw} from 'lucide-react';
 
-import { Button } from "@/components/ui/button.tsx";
-import { useGeolocation } from "@/hooks/use-geolocation";
-import LoadingSkeleton from "@/components/loading-skeleton.tsx";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert.tsx";
+import {Button} from '@/components/ui/button.tsx';
+import {useGeolocation} from '@/hooks/use-geolocation';
+import LoadingSkeleton from '@/components/loading-skeleton.tsx';
+import {Alert, AlertDescription, AlertTitle} from '@/components/ui/alert.tsx';
 import {
   useForecastQuery,
   useReverseGeocodeQuery,
   useWeatherQuery,
-} from "@/hooks/use-weather";
-import CurrentWeather from "@/components/current-weather";
-import TempInHours from "@/components/temp-in-hours.tsx";
-import Forecast from "@/components/forecast.tsx";
-import FavoriteCities from "@/components/favorite-cities";
-import { useFavorites } from "@/hooks/use-favorites";
+} from '@/hooks/use-weather';
+import CurrentWeather from '@/components/current-weather';
+import TempInHours from '@/components/temp-in-hours.tsx';
+import Forecast from '@/components/forecast.tsx';
+import FavoriteCities from '@/components/favorite-cities';
+import {useFavorites} from '@/hooks/use-favorites';
 
 const Dashboard: React.FC = () => {
   const {
@@ -28,7 +28,7 @@ const Dashboard: React.FC = () => {
   const forecastQuery = useForecastQuery(coordinates);
   const locationQuery = useReverseGeocodeQuery(coordinates);
 
-  const { favorites } = useFavorites();
+  const {favorites} = useFavorites();
   const presentFavorites = favorites.length !== 0;
 
   const handleRefresh = () => {
@@ -111,7 +111,7 @@ const Dashboard: React.FC = () => {
         >
           <RefreshCw
             className={`h-4 w-4 ${
-              weatherQuery.isFetching ? "animate-spin" : ""
+              weatherQuery.isFetching ? 'animate-spin' : ''
             }`}
           />
         </Button>

@@ -1,13 +1,13 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { X, Loader2 } from "lucide-react";
-import { toast } from "sonner";
+import {FC} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {X, Loader2} from 'lucide-react';
+import {toast} from 'sonner';
 
-import { useFavorites } from "@/hooks/use-favorites";
-import { useWeatherQuery } from "@/hooks/use-weather";
+import {useFavorites} from '@/hooks/use-favorites';
+import {useWeatherQuery} from '@/hooks/use-weather';
 
-import { Button } from "./ui/button";
-import WeatherAnimation from "./weather-animation";
+import {Button} from './ui/button';
+import WeatherAnimation from './weather-animation';
 
 interface FavoriteCityProps {
   id: string;
@@ -17,8 +17,8 @@ interface FavoriteCityProps {
   onRemove: (id: string) => void;
 }
 
-function FavoriteCity({ id, name, lat, lon, onRemove }: FavoriteCityProps) {
-  const { data: weather, isLoading } = useWeatherQuery({ lat, lon });
+function FavoriteCity({id, name, lat, lon, onRemove}: FavoriteCityProps) {
+  const {data: weather, isLoading} = useWeatherQuery({lat, lon});
   const navigate = useNavigate();
 
   return (
@@ -76,8 +76,8 @@ function FavoriteCity({ id, name, lat, lon, onRemove }: FavoriteCityProps) {
   );
 }
 
-const FavoriteCities: React.FC = () => {
-  const { favorites, removeFavorite } = useFavorites();
+const FavoriteCities: FC = () => {
+  const {favorites, removeFavorite} = useFavorites();
 
   if (!favorites) {
     return null;

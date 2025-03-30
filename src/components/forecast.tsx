@@ -1,10 +1,10 @@
-import React from "react";
-import { format } from "date-fns";
-import { ArrowDown, Droplets, Wind } from "lucide-react";
+import React from 'react';
+import {format} from 'date-fns';
+import {ArrowDown, Droplets, Wind} from 'lucide-react';
 
-import { ForecastData } from "@/api/types";
-import { Card, CardContent } from "@/components/ui/card.tsx";
-import WeatherAnimation from "@/components/weather-animation";
+import {ForecastData} from '@/api/types';
+import {Card, CardContent} from '@/components/ui/card.tsx';
+import WeatherAnimation from '@/components/weather-animation';
 
 interface ForecastProps {
   data: ForecastData;
@@ -24,9 +24,9 @@ interface Forecast {
   };
 }
 
-const Forecast: React.FC<ForecastProps> = ({ data }) => {
+const Forecast: React.FC<ForecastProps> = ({data}) => {
   const dailyForecasts = data.list.reduce((acc, forecast) => {
-    const date = format(new Date(forecast.dt * 1000), "yyy-MM-dd");
+    const date = format(new Date(forecast.dt * 1000), 'yyy-MM-dd');
 
     if (!acc[date]) {
       acc[date] = {
@@ -60,7 +60,7 @@ const Forecast: React.FC<ForecastProps> = ({ data }) => {
             >
               <div>
                 <p className="font-medium">
-                  {format(new Date(day.date * 1000), "EEE, MMM d")}
+                  {format(new Date(day.date * 1000), 'EEE, MMM d')}
                 </p>
                 <p
                   className="text-sm text-muted-foreground capitalize

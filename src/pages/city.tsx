@@ -1,22 +1,22 @@
-import React from "react";
-import { useParams, useSearchParams } from "react-router-dom";
-import { AlertTriangle } from "lucide-react";
+import React from 'react';
+import {useParams, useSearchParams} from 'react-router-dom';
+import {AlertTriangle} from 'lucide-react';
 
-import { useForecastQuery, useWeatherQuery } from "@/hooks/use-weather";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import LoadingSkeleton from "@/components/loading-skeleton";
-import CurrentWeather from "@/components/current-weather";
-import TempInHours from "@/components/temp-in-hours";
-import Forecast from "@/components/forecast";
-import FavoriteButton from "@/components/favorite-button";
+import {useForecastQuery, useWeatherQuery} from '@/hooks/use-weather';
+import {Alert, AlertDescription, AlertTitle} from '@/components/ui/alert';
+import LoadingSkeleton from '@/components/loading-skeleton';
+import CurrentWeather from '@/components/current-weather';
+import TempInHours from '@/components/temp-in-hours';
+import Forecast from '@/components/forecast';
+import FavoriteButton from '@/components/favorite-button';
 
 const City: React.FC = () => {
   const [searchParams] = useSearchParams();
   const params = useParams();
-  const lat = parseFloat(searchParams.get("lat") ?? "0");
-  const lon = parseFloat(searchParams.get("lon") ?? "0");
+  const lat = parseFloat(searchParams.get('lat') ?? '0');
+  const lon = parseFloat(searchParams.get('lon') ?? '0');
 
-  const coordinates = { lat, lon };
+  const coordinates = {lat, lon};
   const weatherQuery = useWeatherQuery(coordinates);
   const forecastQuery = useForecastQuery(coordinates);
 
@@ -44,7 +44,7 @@ const City: React.FC = () => {
         </h1>
         <div>
           <FavoriteButton
-            data={{ ...weatherQuery.data, name: params.cityName }}
+            data={{...weatherQuery.data, name: params.cityName}}
           />
         </div>
       </div>

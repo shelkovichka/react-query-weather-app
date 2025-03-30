@@ -1,4 +1,4 @@
-import React from "react";
+import {FC} from 'react';
 import {
   ArrowDown,
   ArrowUp,
@@ -6,19 +6,19 @@ import {
   Wind,
   Sunrise,
   Sunset,
-} from "lucide-react";
-import { format } from "date-fns";
+} from 'lucide-react';
+import {format} from 'date-fns';
 
-import { GeocodingResponse, type WeatherData } from "@/api/types";
-import { Card, CardContent } from "@/components/ui/card";
-import WeatherAnimation from "@/components/weather-animation";
+import {GeocodingResponse, type WeatherData} from '@/api/types';
+import {Card, CardContent} from '@/components/ui/card';
+import WeatherAnimation from '@/components/weather-animation';
 
 interface CurrentWeatherProps {
   data: WeatherData;
   locationName?: GeocodingResponse;
 }
 
-const CurrentWeather: React.FC<CurrentWeatherProps> = ({
+const CurrentWeather: FC<CurrentWeatherProps> = ({
   data,
   locationName,
 }) => {
@@ -31,13 +31,13 @@ const CurrentWeather: React.FC<CurrentWeatherProps> = ({
       temp_min: tempMin,
       humidity,
     },
-    wind: { speed },
-    sys: { sunrise, sunset },
+    wind: {speed},
+    sys: {sunrise, sunset},
   } = data;
 
   const formatTemp = (temp: number) => `${Math.round(temp)}°`;
   const formatTime = (timestamp: number) => {
-    return format(new Date(timestamp * 1000), "h:mm a");
+    return format(new Date(timestamp * 1000), 'h:mm a');
   };
 
   return (
@@ -48,7 +48,7 @@ const CurrentWeather: React.FC<CurrentWeatherProps> = ({
             <div className="space-y-6">
               <div className="flex items-end">
                 <h2 className="text-2xl font-bold tracking-tighter">
-                  {locationName?.name}{" "}
+                  {locationName?.name}{' '}
                   <span className="text-sm text-muted-foreground">
                     {locationName?.country}
                   </span>

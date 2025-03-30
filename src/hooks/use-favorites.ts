@@ -1,6 +1,6 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import {useQuery, useMutation, useQueryClient} from '@tanstack/react-query';
 
-import { useLocalStorage } from "./use-local-storage";
+import {useLocalStorage} from './use-local-storage';
 
 export interface FavoriteCity {
   id: string;
@@ -14,20 +14,20 @@ export interface FavoriteCity {
 
 export function useFavorites() {
   const [favorites, setFavorites] = useLocalStorage<FavoriteCity[]>(
-      "favorites",
+      'favorites',
       [],
   );
   const queryClient = useQueryClient();
 
   const favoritesQuery = useQuery({
-    queryKey: ["favorites"],
+    queryKey: ['favorites'],
     queryFn: () => favorites,
     initialData: favorites,
     staleTime: Infinity,
   });
 
   const addFavorite = useMutation({
-    mutationFn: async (city: Omit<FavoriteCity, "id" | "addedAt">) => {
+    mutationFn: async (city: Omit<FavoriteCity, 'id' | 'addedAt'>) => {
       const newFavorite: FavoriteCity = {
         ...city,
         id: `${city.lat}-${city.lon}`,
@@ -42,7 +42,7 @@ export function useFavorites() {
       return newFavorites;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["favorites"] });
+      queryClient.invalidateQueries({queryKey: ['favorites']});
     },
   });
 
@@ -53,7 +53,7 @@ export function useFavorites() {
       return newFavorites;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["favorites"] });
+      queryClient.invalidateQueries({queryKey: ['favorites']});
     },
   });
 

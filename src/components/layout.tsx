@@ -1,8 +1,8 @@
-import React, { type PropsWithChildren } from "react";
+import {FC, type PropsWithChildren} from 'react';
 
-import Header from "@/components/header.tsx";
+import Header from '@/components/header.tsx';
 
-const Layout: React.FC<PropsWithChildren> = ({ children }) => {
+const Layout: FC<PropsWithChildren> = ({children}) => {
   return (
     <div className="bg-gradient-to-br from-background to-muted">
       <Header />

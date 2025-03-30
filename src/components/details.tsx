@@ -1,33 +1,33 @@
-import React from "react";
-import { Sunrise, Sunset } from "lucide-react";
-import { format } from "date-fns";
+import {FC} from 'react';
+import {Sunrise, Sunset} from 'lucide-react';
+import {format} from 'date-fns';
 
-import { WeatherData } from "@/api/types.ts";
-import { Card, CardContent } from "@/components/ui/card.tsx";
+import {WeatherData} from '@/api/types.ts';
+import {Card, CardContent} from '@/components/ui/card.tsx';
 
 interface DetailsProps {
   data: WeatherData;
 }
 
-const Details: React.FC<DetailsProps> = ({ data }) => {
-  const { sys } = data;
+const Details: FC<DetailsProps> = ({data}) => {
+  const {sys} = data;
 
   const formatTime = (timestamp: number) => {
-    return format(new Date(timestamp * 1000), "h:mm a");
+    return format(new Date(timestamp * 1000), 'h:mm a');
   };
 
   const details = [
     {
-      title: "Sunrise",
+      title: 'Sunrise',
       value: formatTime(sys.sunrise),
       icon: Sunrise,
-      color: "text-orange-500",
+      color: 'text-orange-500',
     },
     {
-      title: "Sunset",
+      title: 'Sunset',
       value: formatTime(sys.sunset),
       icon: Sunset,
-      color: "text-blue-500",
+      color: 'text-blue-500',
     },
   ];
 

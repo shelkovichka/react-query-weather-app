@@ -1,8 +1,8 @@
-import React from "react";
+import {FC} from 'react';
 
-import { Skeleton } from "@/components/ui/skeleton.tsx";
+import {Skeleton} from '@/components/ui/skeleton.tsx';
 
-const LoadingSkeleton: React.FC = () => {
+const LoadingSkeleton: FC = () => {
   return (
     <div className="space-y-6">
       <div className="grid gap-6">

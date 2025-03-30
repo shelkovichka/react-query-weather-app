@@ -1,14 +1,14 @@
-import { API_CONFIG } from "@/api/config.ts";
+import {API_CONFIG} from '@/api/config.ts';
 import {
   Coordinates,
   ForecastData,
   GeocodingResponse,
   WeatherData,
-} from "@/api/types.ts";
+} from '@/api/types.ts';
 
 const createURL = (
-  endpoint: string,
-  params: Record<string, string | number>
+    endpoint: string,
+    params: Record<string, string | number>,
 ) => {
   const searchParams = new URLSearchParams({
     appid: API_CONFIG.API_KEY,
@@ -41,7 +41,7 @@ export const weatherAPI = {
     return fetchData<WeatherData>(url);
   },
 
-  getForecast: async ({ lat, lon }: Coordinates): Promise<ForecastData> => {
+  getForecast: async ({lat, lon}: Coordinates): Promise<ForecastData> => {
     const url = createURL(`${API_CONFIG.WEATHER_API_URL}/forecast`, {
       lat: lat.toString(),
       lon: lon.toString(),
