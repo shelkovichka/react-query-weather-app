@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import { FC } from "react";
 import {
   ArrowDown,
   ArrowUp,
@@ -6,22 +6,41 @@ import {
   Wind,
   Sunrise,
   Sunset,
-} from 'lucide-react';
-import {format} from 'date-fns';
+} from "lucide-react";
+import { format } from "date-fns";
 
-import {GeocodingResponse, type WeatherData} from '@/api/types';
-import {Card, CardContent} from '@/components/ui/card';
-import WeatherAnimation from '@/components/weather-animation';
+import { GeocodingResponse, type WeatherData } from "@/api/types";
+import { Card, CardContent } from "@/components/ui/card";
+import WeatherAnimation from "@/components/weather-animation";
 
 interface CurrentWeatherProps {
   data: WeatherData;
   locationName?: GeocodingResponse;
 }
 
-const CurrentWeather: FC<CurrentWeatherProps> = ({
-  data,
-  locationName,
-}) => {
+interface MetricItemProps {
+  icon: React.ReactNode;
+  title: string;
+  value: string | number;
+  iconClassName?: string;
+}
+
+const MetricItem: FC<MetricItemProps> = ({
+  icon,
+  title,
+  value,
+  iconClassName,
+}) => (
+  <div className="flex items-center gap-2">
+    <div className={iconClassName}>{icon}</div>
+    <div className="space-y-0.5">
+      <p className="text-sm font-medium">{title}</p>
+      <p className="text-sm text-muted-foreground">{value}</p>
+    </div>
+  </div>
+);
+
+const CurrentWeather: FC<CurrentWeatherProps> = ({ data, locationName }) => {
   const {
     weather: [currentWeather],
     main: {
@@ -31,13 +50,13 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({
       temp_min: tempMin,
       humidity,
     },
-    wind: {speed},
-    sys: {sunrise, sunset},
+    wind: { speed },
+    sys: { sunrise, sunset },
   } = data;
 
   const formatTemp = (temp: number) => `${Math.round(temp)}°`;
   const formatTime = (timestamp: number) => {
-    return format(new Date(timestamp * 1000), 'h:mm a');
+    return format(new Date(timestamp * 1000), "h:mm a");
   };
 
   return (
@@ -46,14 +65,16 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({
         <div className="grid gap-6 sm:grid-cols-2">
           <div className="space-y-4">
             <div className="space-y-6">
-              <div className="flex items-end">
-                <h2 className="text-2xl font-bold tracking-tighter">
-                  {locationName?.name}{' '}
-                  <span className="text-sm text-muted-foreground">
-                    {locationName?.country}
-                  </span>
-                </h2>
-              </div>
+              {locationName && (
+                <div className="flex items-end">
+                  <h2 className="text-2xl font-bold tracking-tighter">
+                    {locationName.name}{" "}
+                    <span className="text-sm text-muted-foreground">
+                      {locationName.country}
+                    </span>
+                  </h2>
+                </div>
+              )}
 
               <div className="flex items-center gap-4">
                 <p className="text-7xl font-bold tracking-tighter">
@@ -78,41 +99,33 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({
               </div>
 
               <div className="grid grid-cols-2 gap-2">
-                <div className="flex items-center gap-2">
-                  <Droplets className="h-4 w-4 text-blue-500" />
-                  <div className="space-y-0.5">
-                    <p className="text-sm font-medium">Humidity</p>
-                    <p className="text-sm text-muted-foreground">{humidity}%</p>
-                  </div>
-                </div>
+                <MetricItem
+                  icon={<Droplets className="h-4 w-4" />}
+                  title="Humidity"
+                  value={`${humidity}%`}
+                  iconClassName="text-blue-500"
+                />
 
-                <div className="flex items-center gap-2">
-                  <Wind className="h-4 w-4 text-blue-500" />
-                  <div className="space-y-0.5">
-                    <p className="text-sm font-medium">Wind Speed</p>
-                    <p className="text-sm text-muted-foreground">{speed} m/s</p>
-                  </div>
-                </div>
+                <MetricItem
+                  icon={<Wind className="h-4 w-4" />}
+                  title="Wind Speed"
+                  value={`${speed} m/s`}
+                  iconClassName="text-blue-500"
+                />
 
-                <div className="flex items-center gap-2">
-                  <Sunrise className="h-4 w-4 text-orange-500" />
-                  <div className="space-y-0.5">
-                    <p className="text-sm font-medium">Sunrise</p>
-                    <p className="text-sm text-muted-foreground">
-                      {formatTime(sunrise)}
-                    </p>
-                  </div>
-                </div>
+                <MetricItem
+                  icon={<Sunrise className="h-4 w-4" />}
+                  title="Sunrise"
+                  value={formatTime(sunrise)}
+                  iconClassName="text-orange-500"
+                />
 
-                <div className="flex items-center gap-2">
-                  <Sunset className="h-4 w-4 text-blue-500" />
-                  <div className="space-y-0.5">
-                    <p className="text-sm font-medium">Sunset</p>
-                    <p className="text-sm text-muted-foreground">
-                      {formatTime(sunset)}
-                    </p>
-                  </div>
-                </div>
+                <MetricItem
+                  icon={<Sunset className="h-4 w-4" />}
+                  title="Sunset"
+                  value={formatTime(sunset)}
+                  iconClassName="text-blue-500"
+                />
               </div>
             </div>
           </div>
