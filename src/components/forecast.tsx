@@ -2,6 +2,7 @@ import {FC} from 'react';
 import {format} from 'date-fns';
 import {ArrowDown, ArrowUp, Droplets, Wind} from 'lucide-react';
 
+import {useFormatTemp} from '@/hooks/use-format-temp';
 import {ForecastData} from '@/api/types';
 import {useForecastData} from '@/hooks/use-forecast';
 import {Card, CardContent} from '@/components/ui/card.tsx';
@@ -12,9 +13,7 @@ interface ForecastProps {
 }
 
 const Forecast: FC<ForecastProps> = ({data}) => {
-  const { nextDays } = useForecastData(data);
-
-  const formatTemp = (temp: number) => `${Math.round(temp)}°`;
+  const {nextDays} = useForecastData(data);
 
   return (
     <div className="xl:flex gap-4 overflow-x-hidden w-full">
@@ -47,11 +46,11 @@ const Forecast: FC<ForecastProps> = ({data}) => {
               <div className="sm:flex gap-2">
                 <span className="flex items-center text-blue-500">
                   <ArrowDown className="mr-1 size-4" />
-                  {formatTemp(day.temp_min)}
+                  {useFormatTemp(day.temp_min)}
                 </span>
                 <span className="flex items-center text-red-500">
                   <ArrowUp className="mr-1 size-4" />
-                  {formatTemp(day.temp_max)}
+                  {useFormatTemp(day.temp_max)}
                 </span>
               </div>
 

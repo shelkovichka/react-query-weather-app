@@ -1,7 +1,7 @@
-import { useMemo } from "react";
-import { format } from "date-fns";
+import {useMemo} from 'react';
+import {format} from 'date-fns';
 
-import { ForecastData } from "@/api/types";
+import {ForecastData} from '@/api/types';
 
 interface Forecast {
   date: number;
@@ -20,7 +20,7 @@ interface Forecast {
 export function useForecastData(data: ForecastData) {
   return useMemo(() => {
     const dailyForecasts = data.list.reduce((acc, forecast) => {
-      const date = format(new Date(forecast.dt * 1000), "yyyy-MM-dd");
+      const date = format(new Date(forecast.dt * 1000), 'yyyy-MM-dd');
 
       if (!acc[date]) {
         acc[date] = {
@@ -33,19 +33,19 @@ export function useForecastData(data: ForecastData) {
         };
       } else {
         acc[date].temp_min = Math.min(
-          acc[date].temp_min,
-          forecast.main.temp_min
+            acc[date].temp_min,
+            forecast.main.temp_min,
         );
         acc[date].temp_max = Math.max(
-          acc[date].temp_max,
-          forecast.main.temp_max
+            acc[date].temp_max,
+            forecast.main.temp_max,
         );
 
         acc[date].humidity = Math.round(
-          (acc[date].humidity + forecast.main.humidity) / 2
+            (acc[date].humidity + forecast.main.humidity) / 2,
         );
         acc[date].wind = parseFloat(
-          ((acc[date].wind + forecast.wind.speed) / 2).toFixed(2)
+            ((acc[date].wind + forecast.wind.speed) / 2).toFixed(2),
         );
       }
 

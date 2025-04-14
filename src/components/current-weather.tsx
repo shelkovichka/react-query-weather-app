@@ -1,4 +1,4 @@
-import { FC } from "react";
+import {FC} from 'react';
 import {
   ArrowDown,
   ArrowUp,
@@ -6,12 +6,13 @@ import {
   Wind,
   Sunrise,
   Sunset,
-} from "lucide-react";
-import { format } from "date-fns";
+} from 'lucide-react';
 
-import { GeocodingResponse, type WeatherData } from "@/api/types";
-import { Card, CardContent } from "@/components/ui/card";
-import WeatherAnimation from "@/components/weather-animation";
+import {useFormatTime} from '@/hooks/use-format-time';
+import {useFormatTemp} from '@/hooks/use-format-temp';
+import {GeocodingResponse, type WeatherData} from '@/api/types';
+import {Card, CardContent} from '@/components/ui/card';
+import WeatherAnimation from '@/components/weather-animation';
 
 interface CurrentWeatherProps {
   data: WeatherData;
@@ -40,7 +41,7 @@ const MetricItem: FC<MetricItemProps> = ({
   </div>
 );
 
-const CurrentWeather: FC<CurrentWeatherProps> = ({ data, locationName }) => {
+const CurrentWeather: FC<CurrentWeatherProps> = ({data, locationName}) => {
   const {
     weather: [currentWeather],
     main: {
@@ -50,14 +51,9 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({ data, locationName }) => {
       temp_min: tempMin,
       humidity,
     },
-    wind: { speed },
-    sys: { sunrise, sunset },
+    wind: {speed},
+    sys: {sunrise, sunset},
   } = data;
-
-  const formatTemp = (temp: number) => `${Math.round(temp)}°`;
-  const formatTime = (timestamp: number) => {
-    return format(new Date(timestamp * 1000), "h:mm a");
-  };
 
   return (
     <Card className="overflow-hidden">
@@ -68,7 +64,7 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({ data, locationName }) => {
               {locationName && (
                 <div className="flex items-end">
                   <h2 className="text-2xl font-bold tracking-tighter">
-                    {locationName.name}{" "}
+                    {locationName.name}{' '}
                     <span className="text-sm text-muted-foreground">
                       {locationName.country}
                     </span>
@@ -78,21 +74,21 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({ data, locationName }) => {
 
               <div className="flex items-center gap-4">
                 <p className="text-7xl font-bold tracking-tighter">
-                  {formatTemp(temp)}
+                  {useFormatTemp(temp)}
                 </p>
 
                 <div className="space-y-1">
                   <p className="text-sm font-medium text-muted-foreground">
-                    Feels like {formatTemp(feelsLike)}
+                    Feels like {useFormatTemp(feelsLike)}
                   </p>
                   <div className="flex gap-2 text-sm font-medium">
                     <span className="flex items-center gap-1 text-blue-500">
                       <ArrowDown className="h-3 w-3" />
-                      {formatTemp(tempMin)}
+                      {useFormatTemp(tempMin)}
                     </span>
                     <span className="flex items-center gap-1 text-red-500">
                       <ArrowUp className="h-3 w-3" />
-                      {formatTemp(tempMax)}
+                      {useFormatTemp(tempMax)}
                     </span>
                   </div>
                 </div>
@@ -116,14 +112,14 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({ data, locationName }) => {
                 <MetricItem
                   icon={<Sunrise className="h-4 w-4" />}
                   title="Sunrise"
-                  value={formatTime(sunrise)}
+                  value={useFormatTime(sunrise)}
                   iconClassName="text-orange-500"
                 />
 
                 <MetricItem
                   icon={<Sunset className="h-4 w-4" />}
                   title="Sunset"
-                  value={formatTime(sunset)}
+                  value={useFormatTime(sunset)}
                   iconClassName="text-blue-500"
                 />
               </div>

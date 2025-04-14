@@ -1,7 +1,7 @@
-import { FC, useState, useEffect } from "react";
-import { Clock, Loader2, Search, XCircle } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import { format } from "date-fns";
+import {FC, useState, useEffect} from 'react';
+import {Clock, Loader2, Search, XCircle} from 'lucide-react';
+import {useNavigate} from 'react-router-dom';
+import {format} from 'date-fns';
 
 import {
   CommandDialog,
@@ -11,28 +11,28 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from "@/components/ui/command.tsx";
-import { Button } from "@/components/ui/button.tsx";
-import { useLocationSearch } from "@/hooks/use-weather.ts";
-import { useSearchHistory } from "@/hooks/use-search-history.ts";
-import { useDebounce } from "@/hooks/use-debounce.ts";
+} from '@/components/ui/command.tsx';
+import {Button} from '@/components/ui/button.tsx';
+import {useLocationSearch} from '@/hooks/use-weather.ts';
+import {useSearchHistory} from '@/hooks/use-search-history.ts';
+import {useDebounce} from '@/hooks/use-debounce.ts';
 
 const CitySearch: FC = () => {
   const [open, setOpen] = useState(false);
-  const [inputValue, setInputValue] = useState("");
-  const [query, setQuery] = useState("");
+  const [inputValue, setInputValue] = useState('');
+  const [query, setQuery] = useState('');
   const navigate = useNavigate();
 
   const debouncedValue = useDebounce(inputValue, 300);
-  const { data: locations, isLoading } = useLocationSearch(query);
-  const { history, clearHistory, addToHistory } = useSearchHistory();
+  const {data: locations, isLoading} = useLocationSearch(query);
+  const {history, clearHistory, addToHistory} = useSearchHistory();
 
   useEffect(() => {
     setQuery(debouncedValue);
   }, [debouncedValue]);
 
   const handleSelect = (cityData: string) => {
-    const [lat, lon, name, country] = cityData.split("|");
+    const [lat, lon, name, country] = cityData.split('|');
 
     addToHistory.mutate({
       lat: parseFloat(lat),
@@ -58,7 +58,8 @@ const CitySearch: FC = () => {
     <div>
       <Button
         variant="outline"
-        className="relative w-full justify-start text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64"
+        className="relative w-full justify-start text-sm text-muted-foreground
+                  sm:pr-12 md:w-40 lg:w-64"
         onClick={() => setOpen(true)}
       >
         <Search className="mr-2 h-4 w-4" />
@@ -97,7 +98,8 @@ const CitySearch: FC = () => {
                 {history.map((item) => (
                   <CommandItem
                     key={item.id}
-                    value={`${item.lat}|${item.lon}|${item.name}|${item.country}`}
+                    value={`${item.lat}|${item.lon}|${item.name}|
+                           ${item.country}`}
                     onSelect={handleSelect}
                   >
                     <Clock className="mr-2 h-4 w-4 text-muted-foreground" />
@@ -106,7 +108,7 @@ const CitySearch: FC = () => {
                       {item.country}
                     </span>
                     <span className="text-sm text-muted-foreground ml-auto">
-                      {format(item.searchedAt, "MMM d, h:mm a")}
+                      {format(item.searchedAt, 'MMM d, h:mm a')}
                     </span>
                   </CommandItem>
                 ))}
@@ -121,7 +123,8 @@ const CitySearch: FC = () => {
               {locations.map((location) => (
                 <CommandItem
                   key={`${location.lat}-${location.lon}`}
-                  value={`${location.lat}|${location.lon}|${location.name}|${location.country}`}
+                  value={`${location.lat}|${location.lon}|${location.name}|
+                         ${location.country}`}
                   onSelect={handleSelect}
                 >
                   <Search className="mr-2 h-4 w-4" />
